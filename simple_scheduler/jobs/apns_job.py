@@ -3,7 +3,7 @@
 import logging
 import os
 
-from ndscheduler import job
+from mdmscheduler import job
 from apns import APNs, Payload
 
 logger = logging.getLogger(__name__)

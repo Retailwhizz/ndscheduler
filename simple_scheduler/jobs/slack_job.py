@@ -7,7 +7,7 @@ import socket
 
 import requests
 
-from ndscheduler import job
+from mdmscheduler import job
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +36,7 @@ class SlackJob(job.JobBase):
                 # message
                 {'type': 'string', 'description': 'The actual message you want to send.'},
             ],
-            'example_arguments': ('["#slack-bot-test", "ndscheduler chat bot", ":satisfied:",'
+            'example_arguments': ('["#slack-bot-test", "mdmscheduler chat bot", ":satisfied:",'
                                   ' "Standup, team! @channel"]')
         }
 
@@ -76,4 +76,4 @@ class SlackJob(job.JobBase):
 if __name__ == "__main__":
     # You can easily test this job here
     job = SlackJob.create_test_instance()
-    job.run('#slack-bot-test', 'ndscheduler', ':satisfied:', 'Standup, team! @channel')
+    job.run('#slack-bot-test', 'mdmscheduler', ':satisfied:', 'Standup, team! @channel')

@@ -12,10 +12,10 @@ from setuptools import setup
 
 multiprocessing
 
-PACKAGE = 'ndscheduler'
+PACKAGE = 'mdmscheduler'
 __version__ = None
 
-exec(open(os.path.join('ndscheduler', 'version.py')).read())  # set __version__
+exec(open(os.path.join('mdmscheduler', 'version.py')).read())  # set __version__
 
 
 # -*- Hooks -*-
@@ -29,7 +29,7 @@ class CleanHook(clean):
             if os.path.exists(path):
                 shutil.rmtree(path)
 
-        maybe_rm('ndscheduler.egg-info')
+        maybe_rm('mdmscheduler.egg-info')
         maybe_rm('build')
         maybe_rm('.venv')
         maybe_rm('dist')
@@ -61,12 +61,12 @@ classifiers = [s.strip() for s in classes.split('\n') if s]
 setup(
     name=PACKAGE,
     version=__version__,
-    description='ndscheduler: A cron-replacement library from Nextdoor',
+    description='mdmscheduler: A cron-replacement library from Nextdoor',
     long_description=open('README.md').read(),
     author='Nextdoor Engineering',
     author_email='eng@nextdoor.com',
-    url='https://github.com/Nextdoor/ndscheduler',
-    download_url='http://pypi.python.org/pypi/ndscheduler#downloads',
+    url='https://github.com/Nextdoor/mdmscheduler',
+    download_url='http://pypi.python.org/pypi/mdmscheduler#downloads',
     license='Apache License, Version 2',
     keywords='scheduler nextdoor cron python',
     packages=find_packages(),

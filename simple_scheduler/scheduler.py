@@ -1,6 +1,6 @@
 """Run the scheduler process."""
 
-from ndscheduler.server import server
+from mdmscheduler.server import server
 
 
 class SimpleServer(server.SchedulerServer):

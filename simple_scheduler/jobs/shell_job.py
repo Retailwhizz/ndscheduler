@@ -2,7 +2,7 @@
 
 from subprocess import call
 
-from ndscheduler import job
+from mdmscheduler import job
 
 
 class ShellJob(job.JobBase):
