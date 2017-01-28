@@ -3,10 +3,10 @@
 This will create a settings module that overrides default
 settings (from the default_settings module) and it will override
 those settings with values found in the module specified by the
-NDSCHEDULER_SETTINGS_MODULE environment variable.
+MDMSCHEDULER_SETTINGS_MODULE environment variable.
 
 Any machine that wants to run a scheduler powered by ndscheduler MUST have
-NDSCHEDULER_SETTINGS_MODULE as an environment variable or this module
+MDMSCHEDULER_SETTINGS_MODULE as an environment variable or this module
 will raise an exception.
 """
 
@@ -24,7 +24,7 @@ ch.setFormatter(formatter)
 logger.addHandler(ch)
 
 
-ENVIRONMENT_VARIABLE = 'NDSCHEDULER_SETTINGS_MODULE'
+ENVIRONMENT_VARIABLE = 'MDMSCHEDULER_SETTINGS_MODULE'
 
 _settings_module = None
 
