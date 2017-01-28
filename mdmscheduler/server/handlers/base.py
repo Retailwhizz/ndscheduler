@@ -11,7 +11,7 @@ from concurrent import futures
 import tornado.ioloop
 import tornado.web
 
-from ndscheduler import settings
+from mdmscheduler import settings
 
 
 class BaseHandler(tornado.web.RequestHandler):

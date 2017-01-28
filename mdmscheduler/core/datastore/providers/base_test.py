@@ -3,8 +3,8 @@
 import datetime
 import unittest
 
-from ndscheduler import constants
-from ndscheduler.core.datastore.providers import base
+from mdmscheduler import constants
+from mdmscheduler.core.datastore.providers import base
 
 
 class SimpleDatastore(base.DatastoreBase):

@@ -5,10 +5,10 @@ import json
 
 import tornado.testing
 
-from ndscheduler import constants
-from ndscheduler.core import scheduler_manager
-from ndscheduler.server import server
-from ndscheduler.server.handlers import executions
+from mdmscheduler import constants
+from mdmscheduler.core import scheduler_manager
+from mdmscheduler.server import server
+from mdmscheduler.server.handlers import executions
 
 
 def mock_get_executions_yield(self):

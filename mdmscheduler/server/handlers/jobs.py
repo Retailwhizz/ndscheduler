@@ -6,9 +6,9 @@ import tornado.concurrent
 import tornado.gen
 import tornado.web
 
-from ndscheduler import constants
-from ndscheduler import utils
-from ndscheduler.server.handlers import base
+from mdmscheduler import constants
+from mdmscheduler import utils
+from mdmscheduler.server.handlers import base
 
 
 class Handler(base.BaseHandler):

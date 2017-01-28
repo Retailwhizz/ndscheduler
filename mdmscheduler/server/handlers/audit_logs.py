@@ -6,7 +6,7 @@ from datetime import timedelta
 import tornado.web
 import tornado.gen
 
-from ndscheduler.server.handlers import base
+from mdmscheduler.server.handlers import base
 
 
 class Handler(base.BaseHandler):

@@ -4,10 +4,10 @@ import json
 
 import tornado.testing
 
-from ndscheduler import utils
-from ndscheduler.core import scheduler_manager
-from ndscheduler.server import server
-from ndscheduler.server.handlers import jobs
+from mdmscheduler import utils
+from mdmscheduler.core import scheduler_manager
+from mdmscheduler.server import server
+from mdmscheduler.server.handlers import jobs
 
 
 def mock_get_jobs_yield(self):

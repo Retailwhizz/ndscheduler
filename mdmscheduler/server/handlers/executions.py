@@ -6,10 +6,10 @@ from datetime import timedelta
 import tornado.web
 import tornado.gen
 
-from ndscheduler import constants
-from ndscheduler import utils
-from ndscheduler.core.scheduler import base as scheduler_base
-from ndscheduler.server.handlers import base
+from mdmscheduler import constants
+from mdmscheduler import utils
+from mdmscheduler.core.scheduler import base as scheduler_base
+from mdmscheduler.server.handlers import base
 
 
 class Handler(base.BaseHandler):

@@ -1,7 +1,7 @@
 """Represents MySQL datastore."""
 
-from ndscheduler import settings
-from ndscheduler.core.datastore.providers import base
+from mdmscheduler import settings
+from mdmscheduler.core.datastore.providers import base
 
 
 class DatastoreMysql(base.DatastoreBase):

@@ -7,10 +7,10 @@ from apscheduler.jobstores import sqlalchemy as sched_sqlalchemy
 from sqlalchemy import select
 from sqlalchemy import desc
 
-from ndscheduler import constants
-from ndscheduler import settings
-from ndscheduler import utils
-from ndscheduler.core.datastore import tables
+from mdmscheduler import constants
+from mdmscheduler import settings
+from mdmscheduler import utils
+from mdmscheduler.core.datastore import tables
 
 
 class DatastoreBase(sched_sqlalchemy.SQLAlchemyJobStore):
@@ -43,7 +43,7 @@ class DatastoreBase(sched_sqlalchemy.SQLAlchemyJobStore):
 
         :param str execution_id: Execution id.
         :param str job_id: Job id.
-        :param int state: Execution state. See ndscheduler.constants.EXECUTION_*
+        :param int state: Execution state. See mdmscheduler.constants.EXECUTION_*
         :param dict kwargs: Keyword arguments
         """
         execution = {

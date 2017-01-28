@@ -2,9 +2,9 @@
 
 import json
 
-from ndscheduler import settings
-from ndscheduler import utils
-from ndscheduler.server.handlers import base
+from mdmscheduler import settings
+from mdmscheduler import utils
+from mdmscheduler.server.handlers import base
 
 
 class Handler(base.BaseHandler):
