@@ -62,6 +62,7 @@ class SchedulerManager:
         This is a BLOCKING operation, as internally, apscheduler doesn't
         call wakeup() that is async.
         """
+        self.sched.stop_scheduler_jobs()
         self.sched.shutdown()
         self.get_datastore().destroy_instance()
 
@@ -142,6 +143,9 @@ class SchedulerManager:
 
         :param str job_id: String for job id to be removed.
         """
+        datastore = self.get_datastore()
+        ret = datastore.delete_executions_for_job(job_id)
+        logger.info("Removing {} executions for the job {}".format(ret.rowcount,job_id))
         self.sched.remove_job(job_id)
 
     def resume_job(self, job_id):

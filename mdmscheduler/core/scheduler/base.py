@@ -64,6 +64,17 @@ class SingletonScheduler (apscheduler_tornado.TornadoScheduler):
         """
         job_class.run_job(job_id, execution_id, *args, **kwargs)
 
+    @classmethod
+    def stop_scheduler_jobs(cls):
+        datastore = utils.get_datastore_instance()
+        object = datastore.get_running_executions()
+
+        for execution in object['executions']:
+            job_class = utils.import_from_path(execution['job']['task_name'])
+            job_id = execution['job']['job_id']
+            execution_id = execution['execution_id']
+            job_class.stop_job(job_id,execution_id)
+
     def add_scheduler_job(self, job_class_string, name, pub_args=None,
                           month=None, day_of_week=None, day=None, hour=None, minute=None,
                           **kwargs):

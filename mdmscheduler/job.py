@@ -43,6 +43,10 @@ class JobBase:
         return utils.get_stacktrace()
 
     @classmethod
+    def get_stopped_description(cls):
+        return utils.get_stacktrace()
+
+    @classmethod
     def get_succeeded_description(cls):
         hostname = socket.gethostname()
         pid = os.getpid()
@@ -105,6 +109,28 @@ class JobBase:
             datastore.update_execution(execution_id,
                                        state=constants.EXECUTION_STATUS_FAILED,
                                        description=cls.get_failed_description())
+
+    @classmethod
+    def stop_job(cls, job_id, execution_id):
+        #This funtion is invoked to stop the job
+        #This can happen when the
+        scheduler = scheduler_manager.SchedulerManager.get_instance()
+        datastore = scheduler.get_datastore()
+        try:
+            datastore.update_execution(execution_id, state=constants.EXECUTION_STATUS_RUNNING,
+                                       hostname=socket.gethostname(), pid=os.getpid(),
+                                       description=cls.get_running_description())
+
+            job = cls(job_id, execution_id)
+            datastore.update_execution(execution_id, state=constants.EXECUTION_STATUS_SCHEDULER_STOPPED,
+                                   description=cls.get_stopped_description())
+        except Exception as e:
+            logger.exception(e)
+            datastore.update_execution(execution_id,
+                                       state=constants.EXECUTION_STATUS_FAILED,
+                                       description=cls.get_failed_description())
+    def stop(cls,job_id, execution_id):
+        pass
 
     def run(self, *args, **kwargs):
         """The "main" function for a job.

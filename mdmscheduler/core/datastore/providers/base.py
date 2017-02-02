@@ -4,7 +4,7 @@ import dateutil.parser
 import dateutil.tz
 
 from apscheduler.jobstores import sqlalchemy as sched_sqlalchemy
-from sqlalchemy import select
+from sqlalchemy import select,delete
 from sqlalchemy import desc
 
 from mdmscheduler import constants
@@ -55,6 +55,15 @@ class DatastoreBase(sched_sqlalchemy.SQLAlchemyJobStore):
         execution_insert = tables.EXECUTIONS.insert().values(**execution)
         self.engine.execute(execution_insert)
 
+    def get_running_executions(self):
+        selectable = select('*').where(tables.EXECUTIONS.c.state == constants.EXECUTION_STATUS_RUNNING )
+        rows = self.engine.execute(selectable)
+
+        return_json = {
+            'executions': [self._build_execution(row) for row in rows]}
+
+        return return_json
+
     def get_execution(self, execution_id):
         """Returns execution dict.
 
@@ -67,6 +76,10 @@ class DatastoreBase(sched_sqlalchemy.SQLAlchemyJobStore):
 
         for row in rows:
             return self._build_execution(row)
+
+    def delete_executions_for_job(self,job_id):
+        selectable = delete(tables.EXECUTIONS).where(tables.EXECUTIONS.c.job_id == job_id)
+        return self.engine.execute(selectable)
 
     def update_execution(self, execution_id, **kwargs):
         """Update execution in database.
