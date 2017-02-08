@@ -27,6 +27,10 @@ class Handler(base.BaseHandler):
         logs = self.datastore.get_audit_logs(time_range_start, time_range_end)
         return logs
 
+    def _get_all_logs(self):
+        logs = self.datastore.get_all_audit_logs()
+        return logs
+
     @tornado.concurrent.run_on_executor
     def get_logs(self):
         """Wrapper for _get_logs to run on threaded executor.
@@ -34,7 +38,8 @@ class Handler(base.BaseHandler):
         :return: audit log info.
         :rtype: dict
         """
-        return self._get_logs()
+        #return self._get_logs()
+        return self._get_all_logs()
 
     @tornado.gen.engine
     def get_logs_yield(self):

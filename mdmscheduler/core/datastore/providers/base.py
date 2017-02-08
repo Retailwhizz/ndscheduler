@@ -129,6 +129,13 @@ class DatastoreBase(sched_sqlalchemy.SQLAlchemyJobStore):
         """
         return time_object.isoformat()
 
+    def get_all_executions(self):
+        selectable = select([tables.EXECUTIONS]).order_by(desc(tables.EXECUTIONS.c.updated_time))
+        rows = self.engine.execute(selectable)
+        return_json = {
+            'executions': [self._build_execution(row) for row in rows]}
+        return return_json
+
     def get_executions(self, time_range_start, time_range_end):
         """Returns info for multiple job executions.
 
@@ -175,6 +182,15 @@ class DatastoreBase(sched_sqlalchemy.SQLAlchemyJobStore):
         }
         log_insert = tables.AUDIT_LOGS.insert().values(**audit_log)
         self.engine.execute(log_insert)
+
+    def get_all_audit_logs(self):
+        selectable = select([tables.AUDIT_LOGS]).order_by(desc(tables.AUDIT_LOGS.c.created_time))
+        rows = self.engine.execute(selectable)
+
+        return_json = {
+            'logs': [self._build_audit_log(row) for row in rows]}
+
+        return return_json
 
     def get_audit_logs(self, time_range_start, time_range_end):
         """Returns a list of audit logs.

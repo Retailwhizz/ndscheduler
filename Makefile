@@ -2,12 +2,12 @@ SHELL:=/bin/bash
 PYTHON=.venv/bin/python
 PIP=.venv/bin/pip
 SOURCE_VENV=. .venv/bin/activate
-FLAKE8_CHECKING=$(SOURCE_VENV) && flake8 ndscheduler simple_scheduler --max-line-length 100
+FLAKE8_CHECKING=$(SOURCE_VENV) && flake8 mdmscheduler simple_scheduler --max-line-length 100
 
 all: test
 
 init:
-	@echo "Initialize dev environment for ndscheduler ..."
+	@echo "Initialize dev environment for mdmscheduler ..."
 	@echo "Install pre-commit hook for git."
 	@echo "$(FLAKE8_CHECKING)" > .git/hooks/pre-commit && chmod 755 .git/hooks/pre-commit
 	@echo "Setup python virtual environment."
@@ -39,8 +39,8 @@ simple:
 	# Install dependencies
 	$(PIP) install -r simple_scheduler/requirements.txt;
 
-	# Uninstall ndscheduler, so that simple scheduler can pick up non-package code
-	$(SOURCE_VENV) && $(PIP) uninstall -y ndscheduler || true
+	# Uninstall mdmscheduler, so that simple scheduler can pick up non-package code
+	$(SOURCE_VENV) && $(PIP) uninstall -y mdmscheduler || true
 	$(SOURCE_VENV) && \
-		NDSCHEDULER_SETTINGS_MODULE=simple_scheduler.settings PYTHONPATH=.:$(PYTHONPATH) \
+		MDMSCHEDULER_SETTINGS_MODULE=simple_scheduler.settings PYTHONPATH=.:$(PYTHONPATH) \
 		$(PYTHON) simple_scheduler/scheduler.py

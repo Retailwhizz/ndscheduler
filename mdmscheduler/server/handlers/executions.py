@@ -68,6 +68,10 @@ class Handler(base.BaseHandler):
         executions = self.datastore.get_executions(time_range_start, time_range_end)
         return executions
 
+    def _get_all_executions(self):
+        executions = self.datastore.get_all_executions()
+        return executions
+
     @tornado.concurrent.run_on_executor
     def get_executions(self):
         """Wrapper for _get_executions to run on threaded executor.
@@ -75,7 +79,8 @@ class Handler(base.BaseHandler):
         :return: executions info.
         :rtype: dict
         """
-        return self._get_executions()
+        #return self._get_executions()
+        return self._get_all_executions()
 
     @tornado.gen.engine
     def get_executions_yield(self):
